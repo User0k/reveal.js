@@ -16,8 +16,115 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section>
+					<img src="./examples/assets/image.png" alt="regexp" style="height: 180px;">
+					<h3>Regular expressions</h3>
+				</section>
+				<section>
+					Long, often used to provide a variable as a pattern
+					<pre class="hljs">regexp = new RegExp("pattern", "flags")</pre>
+					Short, used in most cases when we know what the pattern is
+					<pre class="hljs">regexp = /pattern/gi</pre>
+				</section>
+				<section data-auto-animate>
+					<pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers="|1-2|3|4|5-7"><script type="text/template">
+						const str = 'Cat jumps over the sitting dog, cause it cat';
+						console.log(str.match(/cat/)); //'cat'
+						console.log(str.match(/cat/)i); //'Cat'
+						console.log(str.match(/cat/)gi); //'Cat,cat'
+						str.replace(/cat/gi, 'camel');
+						console.log(str);
+						//'camel jumps over the sitting dog, cause it camel'
+					</script></code></pre>
+				</section>
+				<section style="line-height: 1;">
+						<b style="color:cornflowerblue">i</b>
+						<br>
+						With this flag the search is case-insensitive
+						<br>
+						<b style="color:cornflowerblue">g</b>
+						<br>
+						Allows to search for all matches
+						<br>
+						<b style="color:cornflowerblue">m</b>
+						<br>
+						Multiline mode
+						<br>
+						<b style="color:cornflowerblue">s</b>
+						<br>
+						Enables 'dotall' mode, that allows a . to match newline character \n
+						<br>
+						<b style="color:cornflowerblue">u</b>
+						<br>
+						Enables full Unicode support
+						<br>
+						<b style="color:cornflowerblue">y</b>
+						<br>
+						Searches at the exact position in the text
+				</section>
+				<section>
+					Sets can be extremely useful when you try to find the words that differ with 1 character
+				</section>
+				<section>
+					Beat the heat
+					<code class="hljs">
+						'Beat the heat'.match(/[bh]eat/gi)
+						//["Beat", "heat"]
+					</code>
+				</section>
+				<section>
+					Square brackets may also contain character ranges
+					<pre>
+						<code class="hljs">
+	'Lorem ipsum dolor sit amet consectetur adipisicing elit'
+		.replace(/[a-zA-Z]/g, '')
+
+	//'       '
+						</code>
+					</pre>
+				</section>
+				<section>Character classes are shorthands for certain character sets</section>
+				<section>
+					<ul>
+						<li>\d === [0-9]</li>
+						<li>\w === [a-zA-Z0-9_]</li>
+						<li>\s === [\t\n\v\f\r] (a space symbol)</li>
+						<li>\D !== \d</li>
+						<li>\W !== \w</li>
+						<li>\S !== \s</li>
+						<li>. is a special character class that means 'any character except a newline'</li>
+					</ul>
+				</section>
+				<section>
+					A quantifier is appended to a character or a character class and specifies how many we need
+				</section>
+				<section>
+					Quantifiers
+					<pre>
+						<code>
+							'1 12 123 1234'.match(/\d{3,5}/)
+							//["123", "1234"]
+							'1 12 123 1234'.match(/\d+/g)
+							//["1", "12", "123", "1234"]
+						</code>
+					</pre>
+				</section>
+				<section data-auto-animate>
+					Validation
+					<pre data-id="code-animation">
+						<code class="hljs" data-trim data-line-numbers="|1-2|3-4">
+							<script type="text/template">
+								Phone validation
+								/\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/
+								Email validation
+								^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$
+							</script>
+						</code>
+					</pre>
+				</section>
+				<section>
+					<h2>Not a silver bullet</h2>
+				</section>
 			</div>
 		</div>
 
